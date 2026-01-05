@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 
 const projects = [
@@ -60,7 +61,7 @@ export function Portfolio() {
     <section id="portfolio" ref={sectionRef} className="py-16 md:py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-foreground mb-4 text-balance">
             Nossos Projetos
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
@@ -72,19 +73,23 @@ export function Portfolio() {
           {projects.map((project, index) => (
             <div
               key={index}
-              className={`group relative overflow-hidden rounded-lg shadow-lg aspect-[4/3] transition-all duration-700 hover:shadow-xl hover:-translate-y-2 ${
-                visibleItems[index] ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
+              className={`group relative overflow-hidden rounded-xl shadow-md transition-all duration-700 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 ${
+                visibleItems[index] ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
             >
-              <img
-                src={project.image || "/placeholder.svg"}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-sm text-primary font-medium mb-2">{project.category}</p>
-                  <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <Image
+                  src={project.image || "/placeholder.svg"}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:contrast-[1.05]"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                
+                <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <p className="text-sm text-primary-foreground/80 font-medium mb-2 tracking-wide uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{project.category}</p>
+                  <h3 className="text-2xl md:text-3xl font-bold font-serif text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">{project.title}</h3>
                 </div>
               </div>
             </div>

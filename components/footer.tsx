@@ -1,28 +1,18 @@
-"use client";
+"use client"
 
-import { Instagram, Facebook, Linkedin, Mail, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
+import { Instagram, Mail } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-  const { toast } = useToast();
-  const [email, setEmail] = useState("");
+  const { toast } = useToast()
+  const currentYear = new Date().getFullYear()
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    
-    setTimeout(() => {
-      toast({
-        title: "Inscrição realizada!",
-        description: "Obrigado por se inscrever em nossa newsletter.",
-      });
-      setEmail("");
-    }, 1000);
-  };
+  const copyEmail = () => {
+    navigator.clipboard.writeText("krstudio@outlook.com.br")
+    toast({
+      description: "Email copiado para a área de transferência!",
+    })
+  }
 
   return (
     <footer className="bg-primary text-primary-foreground py-12 md:py-16">
@@ -90,46 +80,31 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter & Social */}
+          {/* Contact & Social */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Newsletter</h4>
-            <p className="text-primary-foreground/80 text-sm mb-4">
-              Receba nossas novidades e inspirações.
-            </p>
-            <form onSubmit={handleSubscribe} className="flex gap-2 mb-6">
-              <Input
-                type="email"
-                placeholder="Seu email"
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 focus-visible:ring-primary-foreground/50"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <Button type="submit" size="icon" variant="secondary" className="shrink-0 cursor-pointer">
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </form>
-
             <h4 className="text-lg font-semibold mb-4">Contate-nos</h4>
             <div className="flex flex-col gap-2 mb-6 text-primary-foreground/80 text-sm md:text-base">
-              <p>kerlenmsrodrigues@hotmail.com</p>
+              <p>krstudio@outlook.com.br</p>
               <p>(51) 99625-3829</p>
+              <p>R. Rio de Janeiro, São Cristóvão - Lajeado - RS, 95900-000</p>
             </div>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/kr_studio3d/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
               </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors"
-                aria-label="Email"
+              <button
+                onClick={copyEmail}
+                className="w-10 h-10 rounded-lg bg-primary-foreground/10 hover:bg-primary-foreground/20 flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Copiar Email"
               >
                 <Mail size={20} />
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -156,5 +131,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

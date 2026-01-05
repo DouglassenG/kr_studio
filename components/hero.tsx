@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
@@ -21,25 +22,27 @@ export function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-16 md:pt-20">
       <div className="absolute inset-0 z-0">
-        <img 
-          src="/hero.jpg" 
-          alt="Interior Design Background" 
-          className="w-full h-full object-cover contrast-[1.1] saturate-[1.1]" 
+        <Image
+          src="/hero.jpg"
+          alt="Interior Design Background"
+          fill
+          priority
+          className="object-cover contrast-[1.05] saturate-[1.05] scale-105 animate-in fade-in duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background/95" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div
-          className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${
+          className={`max-w-4xl mx-auto text-center transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance leading-tight drop-shadow-xl">
-            Transformamos Espaços em <span className="text-primary">Experiências Únicas</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-serif text-foreground mb-6 text-balance leading-tight drop-shadow-lg tracking-tight">
+            Transformamos Espaços em <span className="text-primary italic">Experiências Únicas</span>
           </h1>
 
-          <p className="text-lg sm:text-xl md:text-2xl text-foreground font-medium mb-8 md:mb-12 text-pretty max-w-2xl mx-auto drop-shadow-lg">
+          <p className="text-lg sm:text-xl md:text-2xl text-foreground/90 font-medium mb-8 md:mb-12 text-pretty max-w-2xl mx-auto drop-shadow-md leading-relaxed">
             Design de interiores de alta qualidade que une funcionalidade, estética e personalidade para criar ambientes
             que inspiram
           </p>
@@ -48,7 +51,7 @@ export function Hero() {
             <Button
               onClick={scrollToContact}
               size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-8 py-6 w-full sm:w-auto cursor-pointer"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-8 py-6 w-full sm:w-auto cursor-pointer shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
               Comece Seu Projeto
               <ArrowRight className="ml-2" size={20} />
@@ -60,7 +63,7 @@ export function Hero() {
               }}
               size="lg"
               variant="outline"
-              className="text-base md:text-lg px-8 py-6 w-full sm:w-auto border-primary text-primary hover:bg-primary/10 cursor-pointer"
+              className="text-base md:text-lg px-8 py-6 w-full sm:w-auto border-primary text-primary hover:bg-primary/10 cursor-pointer shadow-sm hover:shadow-md transition-all duration-300"
             >
               Conheça Nossos Serviços
             </Button>

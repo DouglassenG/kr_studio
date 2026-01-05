@@ -26,16 +26,20 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "bg-background/80 backdrop-blur-md shadow-md border-b border-border/50 py-4 md:py-2"
+          : "bg-transparent py-6 md:py-6"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between transition-all duration-500">
           {/* Logo */}
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-2xl md:text-3xl font-bold text-primary hover:opacity-80 transition-opacity cursor-pointer"
+            className={`font-bold font-serif text-primary hover:opacity-80 transition-all duration-300 cursor-pointer ${
+              isScrolled ? "text-2xl" : "text-3xl md:text-4xl"
+            }`}
           >
             KR Studio
           </button>
@@ -44,28 +48,35 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollToSection("services")}
-              className="relative text-sm font-medium text-foreground hover:text-primary transition-colors cursor-pointer group py-1"
+              className={`relative text-sm font-medium hover:text-primary transition-colors cursor-pointer group py-1 ${
+                isScrolled ? "text-foreground" : "text-foreground/90"
+              }`}
             >
               Serviços
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="relative text-sm font-medium text-foreground hover:text-primary transition-colors cursor-pointer group py-1"
+              className={`relative text-sm font-medium hover:text-primary transition-colors cursor-pointer group py-1 ${
+                isScrolled ? "text-foreground" : "text-foreground/90"
+              }`}
             >
               Sobre
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="relative text-sm font-medium text-foreground hover:text-primary transition-colors cursor-pointer group py-1"
+              className={`relative text-sm font-medium hover:text-primary transition-colors cursor-pointer group py-1 ${
+                isScrolled ? "text-foreground" : "text-foreground/90"
+              }`}
             >
               Contato
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
             </button>
             <Button
               onClick={() => scrollToSection("contact")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer"
+              size={isScrolled ? "default" : "lg"}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer shadow-md hover:shadow-lg transition-all duration-300"
             >
               Fale Conosco
             </Button>
@@ -74,10 +85,10 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors cursor-pointer"
+            className="md:hidden text-foreground hover:text-primary transition-colors cursor-pointer p-2 -mr-2"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
         </div>
 

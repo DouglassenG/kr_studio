@@ -73,18 +73,34 @@ export function ContactForm() {
   }, []);
 
   const onSubmit = async (data: ContactFormValues) => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    console.log("Form submitted:", data);
-    
-    toast({
-      title: "Mensagem enviada com sucesso!",
-      description: "Entraremos em contato em breve.",
-    });
-    
-    reset();
-  };
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (!response.ok) {
+        throw new Error("Falha ao enviar mensagem")
+      }
+
+      toast({
+        title: "Mensagem enviada com sucesso!",
+        description: "Entraremos em contato em breve.",
+      })
+      
+      reset()
+    } catch (error) {
+      console.error(error)
+      toast({
+        title: "Erro ao enviar mensagem",
+        description: "Tente novamente mais tarde.",
+        variant: "destructive",
+      })
+    }
+  }
 
   return (
     <section
@@ -94,7 +110,7 @@ export function ContactForm() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-foreground mb-4 text-balance">
             Vamos Criar Algo Incrível Juntos
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
@@ -127,7 +143,7 @@ export function ContactForm() {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
                   <p className="text-muted-foreground">
-                    kerlenmsrodrigues@hotmail.com
+                    krstudio@outlook.com.br
                   </p>
                 </div>
               </div>
@@ -153,9 +169,9 @@ export function ContactForm() {
                     Endereço
                   </h4>
                   <p className="text-muted-foreground">
-                    Av. Paulista, 1000 - Sala 502
+                    R. Rio de Janeiro, São Cristóvão
                     <br />
-                    São Paulo, SP - 01310-100
+                    Lajeado, RS - 95900-000
                   </p>
                 </div>
               </div>
