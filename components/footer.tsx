@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import { Instagram, Mail } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { Instagram, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 export function Footer() {
-  const { toast } = useToast()
-  const currentYear = new Date().getFullYear()
+  const { toast } = useToast();
+  const currentYear = new Date().getFullYear();
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("krstudio@outlook.com.br")
+    navigator.clipboard.writeText("krstudio@outlook.com.br");
     toast({
       description: "Email copiado para a área de transferência!",
-    })
-  }
+    });
+  };
 
   return (
     <footer className="bg-primary text-primary-foreground py-12 md:py-16">
@@ -63,17 +63,26 @@ export function Footer() {
             <h4 className="text-lg font-semibold mb-4">Serviços</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-primary-foreground/80 hover:text-primary-foreground text-sm md:text-base transition-colors">
+                <a
+                  href="#services"
+                  className="text-primary-foreground/80 hover:text-primary-foreground text-sm md:text-base transition-colors"
+                >
                   Consultoria de Design
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-primary-foreground/80 hover:text-primary-foreground text-sm md:text-base transition-colors">
+                <a
+                  href="#services"
+                  className="text-primary-foreground/80 hover:text-primary-foreground text-sm md:text-base transition-colors"
+                >
                   Renderizações 3D
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-primary-foreground/80 hover:text-primary-foreground text-sm md:text-base transition-colors">
+                <a
+                  href="#services"
+                  className="text-primary-foreground/80 hover:text-primary-foreground text-sm md:text-base transition-colors"
+                >
                   Projeto Residencial
                 </a>
               </li>
@@ -86,7 +95,7 @@ export function Footer() {
             <div className="flex flex-col gap-2 mb-6 text-primary-foreground/80 text-sm md:text-base">
               <p>krstudio@outlook.com.br</p>
               <p>(51) 99625-3829</p>
-              <p>R. Rio de Janeiro, São Cristóvão - Lajeado - RS, 95900-000</p>
+              <p>Av. Paraí, São Cristóvão - Lajeado - RS, 95900-000</p>
             </div>
             <div className="flex gap-4">
               <a
@@ -131,5 +140,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

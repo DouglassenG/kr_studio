@@ -5,6 +5,7 @@ import { Portfolio } from "@/components/portfolio"
 import { About } from "@/components/about"
 import { ContactForm } from "@/components/contact-form"
 import { Footer } from "@/components/footer"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 export default function Page() {
   return (
@@ -16,6 +17,7 @@ export default function Page() {
       <About />
       <ContactForm />
       <Footer />
+      <ScrollToTop />
     </main>
   )
 }

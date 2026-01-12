@@ -11,10 +11,19 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+  name: z
+    .string()
+    .min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
   email: z.string().email({ message: "Digite um email válido." }),
-  phone: z.string().min(10, { message: "Digite um telefone válido (mínimo 10 dígitos)." }),
-  message: z.string().min(10, { message: "A mensagem deve ter pelo menos 10 caracteres." }),
+  phone: z
+    .string()
+    .min(10, { message: "Digite um telefone válido." })
+    .regex(/^(\(?\d{2}\)?\s?)?(\d{4,5}-?\d{4})$/, {
+      message: "Formato inválido. Use (XX) 9XXXX-XXXX",
+    }),
+  message: z
+    .string()
+    .min(10, { message: "A mensagem deve ter pelo menos 10 caracteres." }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -25,6 +34,13 @@ export function ContactForm() {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("krstudio@outlook.com.br");
+    toast({
+      description: "Email copiado para a área de transferência!",
+    });
+  };
 
   const {
     register,
@@ -80,27 +96,27 @@ export function ContactForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Falha ao enviar mensagem")
+        throw new Error("Falha ao enviar mensagem");
       }
 
       toast({
         title: "Mensagem enviada com sucesso!",
         description: "Entraremos em contato em breve.",
-      })
-      
-      reset()
+      });
+
+      reset();
     } catch (error) {
-      console.error(error)
+      console.error(error);
       toast({
         title: "Erro ao enviar mensagem",
         description: "Tente novamente mais tarde.",
         variant: "destructive",
-      })
+      });
     }
-  }
+  };
 
   return (
     <section
@@ -140,11 +156,20 @@ export function ContactForm() {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
-                <div>
+                <div className="flex-1">
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                  <p className="text-muted-foreground">
-                    krstudio@outlook.com.br
-                  </p>
+                  <div className="flex items-center gap-2 group">
+                    <p className="text-muted-foreground">
+                      krstudio@outlook.com.br
+                    </p>
+                    <button
+                      onClick={copyEmail}
+                      className="text-primary opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-primary/5 rounded cursor-pointer"
+                      title="Copiar email"
+                    >
+                      <Mail size={14} />
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -169,7 +194,7 @@ export function ContactForm() {
                     Endereço
                   </h4>
                   <p className="text-muted-foreground">
-                    R. Rio de Janeiro, São Cristóvão
+                    Av. Paraí - São Cristóvão
                     <br />
                     Lajeado, RS - 95900-000
                   </p>
@@ -201,7 +226,9 @@ export function ContactForm() {
                   className={`w-full ${errors.name ? "border-red-500" : ""}`}
                 />
                 {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -220,7 +247,9 @@ export function ContactForm() {
                   className={`w-full ${errors.email ? "border-red-500" : ""}`}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -239,7 +268,9 @@ export function ContactForm() {
                   className={`w-full ${errors.phone ? "border-red-500" : ""}`}
                 />
                 {errors.phone && (
-                  <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.phone.message}
+                  </p>
                 )}
               </div>
 
@@ -258,7 +289,9 @@ export function ContactForm() {
                   className={`w-full resize-none ${errors.message ? "border-red-500" : ""}`}
                 />
                 {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.message.message}
+                  </p>
                 )}
               </div>
 
