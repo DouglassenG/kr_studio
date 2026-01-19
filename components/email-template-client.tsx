@@ -47,7 +47,7 @@ export const ClientEmailTemplate: React.FC<
 
         <p style={{ margin: "25px 0" }}>
           <a
-            href="https://www.instagram.com/kr.studio.oficial/"
+            href="https://www.instagram.com/kr_studio3d/"
             style={{
               color: "#000",
               fontWeight: "bold",
