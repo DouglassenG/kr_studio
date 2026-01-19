@@ -9,18 +9,23 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { enviarContato } from "@/app/actions";
 
 const contactFormSchema = z.object({
   name: z
     .string()
     .min(2, { message: "O nome deve ter pelo menos 2 caracteres." }),
+
   email: z.string().email({ message: "Digite um email válido." }),
   phone: z
     .string()
-    .min(10, { message: "Digite um telefone válido." })
-    .regex(/^(\(?\d{2}\)?\s?)?(\d{4,5}-?\d{4})$/, {
-      message: "Formato inválido. Use (XX) 9XXXX-XXXX",
+    .transform((val) => {
+      return val.replace(/[^0-9]/g, "");
+    })
+    .refine((val) => val.length >= 10, {
+      message: "Digite um telefone válido com DDD (mínimo 10 números).",
     }),
+
   message: z
     .string()
     .min(10, { message: "A mensagem deve ter pelo menos 10 caracteres." }),
@@ -60,7 +65,7 @@ export function ContactForm() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const formObserver = new IntersectionObserver(
@@ -71,7 +76,7 @@ export function ContactForm() {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -89,30 +94,18 @@ export function ContactForm() {
   }, []);
 
   const onSubmit = async (data: ContactFormValues) => {
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const result = await enviarContato(data);
 
-      if (!response.ok) {
-        throw new Error("Falha ao enviar mensagem");
-      }
-
+    if (result.success) {
       toast({
         title: "Mensagem enviada com sucesso!",
         description: "Entraremos em contato em breve.",
       });
-
       reset();
-    } catch (error) {
-      console.error(error);
+    } else {
       toast({
         title: "Erro ao enviar mensagem",
-        description: "Tente novamente mais tarde.",
+        description: result.error || "Tente novamente mais tarde.",
         variant: "destructive",
       });
     }
