@@ -17,10 +17,50 @@ O projeto resolve a necessidade de **Digitalização da Marca**, oferecendo um p
 
 ## 🖼️ Demonstração Visual
 
+*(Se o projeto estiver hospedado na Vercel, Netlify ou GitHub Pages, insira o link aqui)*
+🔗 **Acesse o Site:** [Insira o Link de Deploy Aqui]
 
 ## 🛠️ Tecnologias Utilizadas
 
 A stack foi selecionada visando a criação de uma interface rica e manutenção simplificada:
 
 * **[ReactJS](https://react.dev/):** Biblioteca base para componentização da UI.
-* **
+* **[Vite](https://vitejs.dev/):** Build tool utilizada para garantir um ambiente de desenvolvimento rápido e build de produção otimizado.
+* **[Styled Components](https://styled-components.com/):** Para escrita de CSS-in-JS, permitindo escopo isolado de estilos e temas dinâmicos.
+* **[AOS (Animate On Scroll)](https://michalsnik.github.io/aos/):** Biblioteca para micro-interações e animações de entrada de elementos conforme a rolagem.
+* **[React Icons](https://react-icons.github.io/react-icons/):** Integração de ícones vetoriais leves.
+
+## ✨ Funcionalidades
+
+O projeto conta com seções estruturadas para conversão:
+
+1.  **Hero Section Imersiva:** Destaque visual com chamada para ação (CTA) clara.
+2.  **Galeria de Serviços:** Cards interativos detalhando os procedimentos oferecidos.
+3.  **Animações de Scroll:** Elementos que surgem suavemente na tela, guiando a atenção do usuário.
+4.  **Menu Responsivo:** Navegação adaptável que se transforma em menu "hambúrguer" em telas menores.
+5.  **Formulário/Link de Contato:** Integração direta com WhatsApp ou formulário de e-mail.
+
+## 📂 Estrutura de Arquivos
+
+A organização reflete uma arquitetura limpa de componentes:
+
+```text
+kr_studio/
+├── public/              # Assets estáticos (logos, favicon)
+├── src/
+│   ├── assets/          # Imagens otimizadas do projeto
+│   │   ├── images/
+│   │   └── icons/
+│   ├── components/      # Componentes UI reutilizáveis
+│   │   ├── Header/      # Navegação e Menu
+│   │   ├── Hero/        # Banner principal
+│   │   ├── Services/    # Seção de cards
+│   │   ├── Footer/      # Rodapé
+│   │   └── Button/      # Componente atômico de botão
+│   ├── styles/          # Estilos globais e temas
+│   │   ├── GlobalStyles.js
+│   │   └── theme.js
+│   ├── App.jsx          # Componente Raiz
+│   └── main.jsx         # Entry Point
+├── package.json         # Dependências
+└── README.md            # Documentação
