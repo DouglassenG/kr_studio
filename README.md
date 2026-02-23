@@ -17,7 +17,7 @@ O projeto resolve a necessidade de **Digitalização da Marca**, oferecendo um p
 
 ## 🖼️ Demonstração Visual
 
-
+https://kr-studio.vercel.app/
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -63,4 +63,5 @@ kr_studio/
 │   └── main.jsx         # Entry Point
 ├── package.json         # Dependências
 └── README.md            # Documentação
+
 
