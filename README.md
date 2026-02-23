@@ -17,8 +17,7 @@ O projeto resolve a necessidade de **Digitalização da Marca**, oferecendo um p
 
 ## 🖼️ Demonstração Visual
 
-*(Se o projeto estiver hospedado na Vercel, Netlify ou GitHub Pages, insira o link aqui)*
-🔗 **Acesse o Site:** [Insira o Link de Deploy Aqui]
+
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -64,3 +63,4 @@ kr_studio/
 │   └── main.jsx         # Entry Point
 ├── package.json         # Dependências
 └── README.md            # Documentação
+
