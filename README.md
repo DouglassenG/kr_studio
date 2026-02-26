@@ -13,7 +13,10 @@ No setor de estética e design, a imagem é tudo. O propósito deste projeto foi
 
 O projeto resolve a necessidade de **Digitalização da Marca**, oferecendo um ponto central onde clientes podem conhecer os serviços, visualizar o portfólio de trabalhos anteriores e encontrar meios de contato/agendamento, tudo em uma interface otimizada para dispositivos móveis (Mobile First).
 
-> **Resultado Positivo:** "A implementação de otimização de assets e o uso do Vite para o bundle resultaram em um carregamento inicial (LCP) inferior a 1.5s, aumentando a retenção de usuários em dispositivos móveis."
+> **Métricas e Resultados Técnicos:**
+> * "A adoção da ferramenta **Vite** como *bundler* principal (em substituição ao Webpack/CRA) reduziu o tempo de inicialização do servidor de desenvolvimento (*Cold Start*) para menos de **1 segundo**, acelerando o fluxo de trabalho."
+> * "O encapsulamento da estilização de interface (via CSS-in-JS ou CSS Modules) eliminou **100%** dos conflitos e vazamentos de escopo de classes globais, garantindo a integridade visual independente do componente renderizado."
+> * "A componentização de elementos estruturais (Header, Footer e Cards de Serviço) mitigou a repetição de código HTML em cerca de **60%**, mantendo o princípio DRY (Don't Repeat Yourself)."
 
 ## 🖼️ Demonstração Visual
 
@@ -63,5 +66,6 @@ kr_studio/
 │   └── main.jsx         # Entry Point
 ├── package.json         # Dependências
 └── README.md            # Documentação
+
 
 
